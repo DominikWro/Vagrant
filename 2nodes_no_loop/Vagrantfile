@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure(2) do |config|
+  config.vm.define "n1" do |n1|
+      n1.vm.box = "centos/7"
+      n1.vm.synced_folder ".", "/vagrant", disabled: true
+      n1.vm.hostname = "n1"
+      n1.vm.network "private_network", ip: "172.20.20.10"
+  end
+
+  config.vm.define "n2" do |n2|
+      n2.vm.box = "centos/7"
+      n2.vm.synced_folder ".", "/vagrant", disabled: true
+      n2.vm.hostname = "n2"
+      n2.vm.network "private_network", ip: "172.20.20.11"
+  end
+end
