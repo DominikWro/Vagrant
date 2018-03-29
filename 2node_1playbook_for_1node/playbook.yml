@@ -1,0 +1,9 @@
+- hosts: n1
+  tasks:
+    - name: run this command and ignore the result
+      shell: touch test_ok_n1
+
+- hosts: n2
+  tasks:
+    - name: run this command and ignore the result
+      shell: touch test_ok_n1
