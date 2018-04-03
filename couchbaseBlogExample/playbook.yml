@@ -1,0 +1,23 @@
+---
+#
+# Install Couchbase cluster from a single command
+#
+
+- name: Couchbase Installation
+  hosts: all
+  become: yes
+  become_method: sudo
+
+  tasks:
+
+  - name: download Couchbase package
+    get_url: url=http://packages.couchbase.com/releases/2.1.0/couchbase-server-enterprise_x86_64_2.1.0.deb dest=~/.
+
+  - name: Install dependencies
+    apt: pkg=libssl0.9.8 state=present
+
+  - name: Install Couchbase .deb file on all machines
+    ansible_become: yes
+    ansible_become_method: su
+    ansible_become_user: root
+    shell: dpkg -i /home/vagrant/couchbase-server-enterprise_x86_64_2.1.0.deb
